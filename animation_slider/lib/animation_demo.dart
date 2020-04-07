@@ -174,15 +174,12 @@ class _AnimationSliderDemoState extends State<AnimationSliderDemo>
 
   void _onPanUpdate(DragUpdateDetails d) {
     var delta = (_currentPos - d.globalPosition.dx) / _screenWidth;
-    bool isDirectionChanged = _isReverse;
     _isReverse = delta < 0;
-
-    isDirectionChanged = isDirectionChanged ^ _isReverse;
 
     var value = _currentAnimValue + delta;
 
     if (_isReverse) {
-      if (!_panStarted && !isDirectionChanged) {
+      if (!_panStarted) {
         _panStarted = true;
 
         if (_backupIdx.isEmpty) return;
